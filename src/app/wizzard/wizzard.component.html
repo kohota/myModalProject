@@ -1,0 +1,20 @@
+<aw-wizard [defaultStepIndex]="0" [navigationMode]="'free'">
+  <aw-wizard-step stepTitle="Creer Votre Utilisateur">
+    <app-utilisateur (onSaveUser)="getUserAfterSave($event)"></app-utilisateur>
+    <button type="button" class="btn btn-info" awNextStep [disabled]="!valideUserStep1()">Suivant</button>
+    
+  </aw-wizard-step>
+  <aw-wizard-step stepTitle="Title of step 2" awOptionalStep>
+    <app-adresse (onEmitAdresse)="getAdresse($event)"></app-adresse>
+    <button type="button" awPreviousStep class="btn btn-info">Retour</button>
+    <button type="button" awNextStep class="btn btn-info" [disabled]="!valideUserStep2()">Suivant</button>
+  </aw-wizard-step>
+  <aw-wizard-step stepTitle="Choisire Votre Entite">
+    <app-entite (onEmitEntite)="getEntite($event)"></app-entite>
+    <button type="button" class="btn btn-info" awPreviousStep>Retour</button>
+    <button type="button" class="btn btn-success" (click)="detailsRedirect($event)" awNextStep [disabled]="!valideUserStep3()">Finish</button>
+  </aw-wizard-step>
+  <aw-wizard-step stepTitle="Resumer">
+    <app-detail-utilisateur [utilisateur]="utilisateur"></app-detail-utilisateur> 
+  </aw-wizard-step>
+</aw-wizard>

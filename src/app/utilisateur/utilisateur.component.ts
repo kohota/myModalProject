@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Utilisateur } from '../model/Utilisateurs';
 
 @Component({
@@ -10,7 +10,7 @@ export class UtilisateurComponent implements OnInit {
 
   @Input()
   userId;
-  
+  @Output() onSaveUser:EventEmitter<Utilisateur>=new EventEmitter();
   utilisateur :Utilisateur=new Utilisateur();
   constructor() { }
 
@@ -20,6 +20,8 @@ export class UtilisateurComponent implements OnInit {
 
   save(){
     //Faire appel a votre service pour perssister votre objet 
-    console.log(this.utilisateur);
+    
+    this.utilisateur.id=5656;
+    this.onSaveUser.emit(this.utilisateur);
   }
 }
